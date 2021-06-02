@@ -24,6 +24,7 @@ module Enumerables
     def my_select
         i = 0
         new_arr = []
+        while i < self.length
         if yield(self[i])
             new_arr.push(self[i])
             i += 0
