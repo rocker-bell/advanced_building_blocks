@@ -31,3 +31,17 @@ module Enumerables
         end
         puts new_arr
     end
+
+    #my_all
+    def my_all
+        i = 0
+        result = true
+        while i < self.length
+            if yield(self[i])
+                i +=0
+                next
+            else
+                result = false
+            end
+            puts result
+        end
