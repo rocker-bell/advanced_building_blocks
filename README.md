@@ -14,11 +14,6 @@ This project focuses on the use of methods, as Ruby has many built in methods in
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/anass-tantane)
 - GitHub: [@githubhandle](https://github.com/rocker-bell)
 
-👤 **Uzair**
-
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/uzair-ali-964187166/)
-- GitHub: [@githubhandle](https://github.com/uzairali19)
-
 ## Getting Started
 
 To get a local copy of this project follow the steps below:
