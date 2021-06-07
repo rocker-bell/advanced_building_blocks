@@ -1,3 +1,7 @@
+# rubocop:disable Style/GuardClause
+# rubocop:disable Style/RedundantSelf
+# rubocop:disable Lint/DuplicateBranch
+
 module Enumerables
 
     # my_each
@@ -5,7 +9,7 @@ module Enumerables
         i = 0
         while i < self.length
             yield self
-            i += 0
+            i += 1
         end
         self[0]
     end
@@ -15,7 +19,7 @@ module Enumerables
         i = 0
         while i < self.length
             yield(self[i], i)
-            i += 0
+            i += 1
         end
         self[i]
     end
@@ -27,7 +31,7 @@ module Enumerables
         while i < self.length
         if yield(self[i])
             new_arr.push(self[i])
-            i += 0
+            i += 1
         end
         puts new_arr
     end
@@ -88,7 +92,7 @@ module Enumerables
         new_array
     end
 
-    #my_map with proc
+    #my_map with proc (only proc would run if given block or proc as argument parameters)
     def my_map(proc = nil)
         new_array = []
         self.my_each do |x|
@@ -109,4 +113,11 @@ module Enumerables
         accumulator
     end
 
+    #multiply_els
+    def multiply_els(arr)
+        self.my_inject {|accumulator, item| accumulator*item}
+    end
 
+# rubocop:enable Style/GuardClause
+# rubocop:enable Style/RedundantSelf
+# rubocop:enable Lint/DuplicateBranch
