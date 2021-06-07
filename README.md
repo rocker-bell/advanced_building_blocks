@@ -14,18 +14,13 @@ This project focuses on the use of methods, as Ruby has many built in methods in
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/anass-tantane)
 - GitHub: [@githubhandle](https://github.com/rocker-bell)
 
-👤 **Uzair**
-
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/uzair-ali-964187166/)
-- GitHub: [@githubhandle](https://github.com/uzairali19)
-
 ## Getting Started
 
 To get a local copy of this project follow the steps below:
 
 ### Setup Local
 
-Use `git clone git@github.com:rocker-bell/Enumerables.git` to clone the branch directly to your machine
+Use `git clone https://github.com/rocker-bell/advanced_building_blocks` to clone the branch directly to your machine
 
 ### Running the program
 
@@ -37,7 +32,7 @@ Use `git clone git@github.com:rocker-bell/Enumerables.git` to clone the branch d
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/rocker-bell/Enumerables/issues).
+Feel free to check the [issues page](https://github.com/rocker-bell/advanced_building_blocks/issues).
 
 ## Show your support
 
