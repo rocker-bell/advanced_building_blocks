@@ -14,7 +14,7 @@ module Enumerables
     def my_each_with_index
         i = 0
         while i < self.length
-            yield (self[i], i)
+            yield(self[i], i)
             i += 0
         end
         self[i]
@@ -32,13 +32,13 @@ module Enumerables
         puts new_arr
     end
 
-    #my_all
-    def my_all
+    #my_all?
+    def my_all?
         i = 0
         result = true
         while i < self.length
             if yield(self[i])
-                i +=0
+                i +=1
                 next
             else
                 result = false
@@ -53,7 +53,60 @@ module Enumerables
             if yield(self[i])
                 return false
             end
-            i +=0
+            i += 1
         end
         true 
     end
+
+    #my_any?
+    def my_any?
+        result = false
+        self.my_each do |x|
+            if yield(x)
+                result = true
+            end
+            result 
+        end
+
+    #my_count
+    def my_count
+        counter = 0
+        self.my_each do |x|
+            counter += 1 if yield(x)
+        end
+        counter
+    end
+
+    #my_map
+    def my_map 
+        i = 0
+        new_array = []
+        self.my_each do |x|
+            new_array.push(yield(x))
+            i += 1
+        end
+        new_array
+    end
+
+    #my_map with proc
+    def my_map(proc = nil)
+        new_array = []
+        self.my_each do |x|
+            unless proc.nil?
+                new_array.push(proc.call(x))
+            else
+                new_array.push(yield(x))
+            end
+        end
+        new_array
+    end
+
+    #my_inject
+    def my_inject(accumulator = 0, &block)
+        self.each do |item|
+            accumulator = block.call(accumulator, item)
+        end
+        accumulator
+    end
+
+
