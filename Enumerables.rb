@@ -121,4 +121,5 @@ module Enumerables
 # rubocop:enable Style/GuardClause
 # rubocop:enable Style/RedundantSelf
 # rubocop:enable Lint/DuplicateBranch
+
 end
