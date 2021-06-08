@@ -24,6 +24,7 @@ module Enumerables
 
   # my_select
   def my_select
+    return to_enum unless block_given?
     i = 0
     new_arr = []
     while i < length
@@ -105,6 +106,9 @@ module Enumerables
 
   # my_inject
   def my_inject(accumulator = 0, &block)
+    if !block_given?
+        raise LocalJumpError, "no block of code is given" if &block.empty?
+    else
     each do |item|
       accumulator = block.call(accumulator, item)
     end
