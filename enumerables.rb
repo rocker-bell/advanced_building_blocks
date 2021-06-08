@@ -118,7 +118,7 @@ end
 
 # multiply_els
 def multiply_els(_arr)
-  my_inject { |accumulator, item| accumulator * item }
+  arr.my_inject { |accumulator, item| accumulator * item }
 end
 
 # rubocop enable: Metrics/MethodLength
