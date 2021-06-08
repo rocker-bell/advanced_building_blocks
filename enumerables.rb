@@ -15,6 +15,7 @@ module Enumerables
 
   # my_each_with_index
   def my_each_with_index
+    return to_enum unless block_given?
     i = 0
     while i < length
       yield(self[i], i)
@@ -40,6 +41,7 @@ module Enumerables
 
   # my_all?
   def my_all?
+    return to_enum unless block_given?
     i = 0
     result = true
     while i < length
@@ -55,6 +57,7 @@ module Enumerables
 
   # my_none?
   def my_none?
+    return to_enum unless block_given?
     i = 0
     while i < length
       return false if yield(self[i])
@@ -66,6 +69,7 @@ module Enumerables
 
   # my_any?
   def my_any?
+    return to_enum unless block_given?
     result = false
     my_each do |x|
       result = true if yield(x)
@@ -75,6 +79,7 @@ module Enumerables
 
   # my_count
   def my_count
+    return to_enum unless block_given?
     counter = 0
     my_each do |x|
       counter += 1 if yield(x)
@@ -84,6 +89,7 @@ module Enumerables
 
   # my_map
   def my_map
+    return to_enum unless block_given?
     i = 0
     new_array = []
     my_each do |x|
@@ -95,6 +101,7 @@ module Enumerables
 
   # my_map with proc (only proc would run if given block or proc as argument parameters)
   def my_map_with_proc(proc = nil)
+    return to_enum unless block_given?
     new_array = []
     my_each do |x|
       if proc.nil?
