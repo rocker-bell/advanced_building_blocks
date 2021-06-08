@@ -32,7 +32,7 @@ Use `git clone git@github.com:rocker-bell/Enumerables.git` to clone the branch d
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/rocker-bell/Enumerables/issues).
+Feel free to check the [issues page](https://github.com/rocker-bell/advanced_building_blocks/issues).
 
 ## Show your support
 
