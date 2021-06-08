@@ -114,10 +114,9 @@ module Enumerables
     elsif block.empty?
       raise LocalJumpError, 'no block of code is given'
     end
-    elsif accumulator.is_a? Integer
-        each do |item|
-            accumulator = accumulator ? yield(accumulator, item) : item
-        end
+    each do |item|
+      accumulator = accumulator ? yield(accumulator, item) : item
+    end
     accumulator
   end
 end
