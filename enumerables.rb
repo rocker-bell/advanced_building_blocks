@@ -1,5 +1,4 @@
-# rubocop disable: Metrics/MethodLength
-# rubocop disable: Style/Documentation
+# rubocop:disable Metrics/ModuleLength
 
 module Enumerables
   # my_each
@@ -142,5 +141,4 @@ def multiply_els(_arr)
   arr.my_inject { |accumulator, item| accumulator * item }
 end
 
-# rubocop enable: Metrics/MethodLength
-# rubocop enable: Style/Documentation
+# rubocop:enable Metrics/ModuleLength
