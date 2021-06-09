@@ -1,7 +1,7 @@
 # rubocop:disable Metrics/ModuleLength
 
 module Enumerables
-  # my_each
+# my_each
     def my_each
         return to_enum(:my_each) unless block_given?
 
@@ -15,7 +15,7 @@ module Enumerables
         
     end
 
-  # my_each_with_index
+# my_each_with_index
   def my_each_with_index
     return to_enum(:my_each_with_index) unless block_given?
 
@@ -27,7 +27,7 @@ module Enumerables
     self[i]
   end
 
-  # my_select
+# my_select
   def my_select
     return to_enum(:my_select) unless block_given?
 
@@ -42,7 +42,7 @@ module Enumerables
     end
   end
 
-  # my_all?
+# my_all?
   def my_all?
     return to_enum(:my_all?) unless block_given?
 
@@ -59,7 +59,7 @@ module Enumerables
     end
   end
 
-  # my_none?
+# my_none?
   def my_none?
     return to_enum(:my_none?) unless block_given?
 
@@ -72,7 +72,7 @@ module Enumerables
     true
   end
 
-  # my_any?
+# my_any?
 def my_any?
     return to_enum(:my_any?) unless block_given?
 
@@ -85,7 +85,7 @@ def my_any?
     
 end
 
-  # my_count
+# my_count
 def my_count
     return to_enum(:my_count) unless block_given?
     counter = 0
@@ -96,7 +96,7 @@ def my_count
     end
 end
 
-  # my_map
+# my_map
 def my_map
     return to_enum(:my_map) unless block_given?
 
@@ -110,7 +110,7 @@ def my_map
 end
 
 
-  # my_map with proc
+# my_map with proc
 def my_map_with_proc(proc = nil)
     return to_enum(:my_map_with_proc) unless block_given?
 
@@ -127,7 +127,7 @@ def my_map_with_proc(proc = nil)
 end
 
 
-  # my_inject
+# my_inject
     def my_inject(accumulator = 0, &block)
         if block_given? && ((accumulator.is_a? String) == false)
             my_each do |item|
