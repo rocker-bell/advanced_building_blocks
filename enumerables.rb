@@ -2,23 +2,25 @@
 
 module Enumerables
   # my_each
-  def my_each
-    return to_enum unless block_given?
+    def my_each
+        return to_enum(:my_each) unless block_given?
 
-    i = 0
-    while i < length
-      yield self
-      i += 1
+        i = 0
+        while i < self.length
+            yield(self[i])
+            i +=1
+        end
+
+        self
+        
     end
-    self[0]
-  end
 
   # my_each_with_index
   def my_each_with_index
-    return to_enum unless block_given?
+    return to_enum(:my_each_with_index) unless block_given?
 
     i = 0
-    while i < length
+    while i < self.length
       yield(self[i], i)
       i += 1
     end
@@ -27,11 +29,11 @@ module Enumerables
 
   # my_select
   def my_select
-    return to_enum unless block_given?
+    return to_enum(:my_select) unless block_given?
 
     i = 0
     new_arr = []
-    while i < length
+    while i < self.length
       if yield(self[i])
         new_arr.push(self[i])
         i += 1
@@ -42,11 +44,11 @@ module Enumerables
 
   # my_all?
   def my_all?
-    return to_enum unless block_given?
+    return to_enum(:my_all?) unless block_given?
 
     i = 0
     result = true
-    while i < length
+    while i < self.length
       if yield(self[i])
         i += 1
         next
@@ -59,10 +61,10 @@ module Enumerables
 
   # my_none?
   def my_none?
-    return to_enum unless block_given?
+    return to_enum(:my_none?) unless block_given?
 
     i = 0
-    while i < length
+    while i < self.length
       return false if yield(self[i])
 
       i += 1
@@ -71,70 +73,79 @@ module Enumerables
   end
 
   # my_any?
-  def my_any?
-    return to_enum unless block_given?
+def my_any?
+    return to_enum(:my_any?) unless block_given?
 
     result = false
-    my_each do |x|
-      result = true if yield(x)
-      result
+    self.my_each do |element|
+      result = true if yield(element)
     end
-  end
+    result
+    end
+    
+end
 
   # my_count
-  def my_count
-    return to_enum unless block_given?
-
+def my_count
+    return to_enum(:my_count) unless block_given?
     counter = 0
-    my_each do |x|
-      counter += 1 if yield(x)
+    self.my_each do |element|
+      counter += 1 if yield(element)
     end
     counter
-  end
+    end
+end
 
   # my_map
-  def my_map
-    return to_enum unless block_given?
+def my_map
+    return to_enum(:my_map) unless block_given?
 
     i = 0
     new_array = []
-    my_each do |x|
-      new_array.push(yield(x))
+    self.my_each do |element|
+      new_array.push(yield(element))
       i += 1
     end
     new_array
-  end
+end
 
-  # my_map with proc (only proc would run if given block or proc as argument parameters)
-  def my_map_with_proc(proc = nil)
-    return to_enum unless block_given?
+
+  # my_map with proc
+def my_map_with_proc(proc = nil)
+    return to_enum(:my_map_with_proc) unless block_given?
 
     new_array = []
-    my_each do |x|
-      if proc.nil?
-        new_array.push(yield(x))
-      else
-        new_array.push(proc.call(x))
-      end
+    my_each do |element|
+    if proc.nil?
+        new_array.push(yield(element))
+    else
+        new_array.push(proc.call(element))
     end
     new_array
-  end
+    end
+    
+end
+
 
   # my_inject
-  def my_inject(accumulator = 0, &block)
-    if block_given?
-      each do |item|
-        accumulator = block.call(accumulator, item)
-      end
-    elsif block.empty?
-      raise LocalJumpError, 'no block of code is given'
-    end
-    each do |item|
-      accumulator = accumulator ? yield(accumulator, item) : item
-    end
+    def my_inject(accumulator = 0, &block)
+        if block_given? && ((accumulator.is_a? String) == false)
+            my_each do |item|
+                accumulator = block.call(accumulator, item)
+            end
+        end
+    
+        if block_given? && accumulator.is_a? String   
+            my_each do |item|
+                accumulator = accumulator ? yield(accumulator, item) : item
+            end
+        end
+
+        if block.empty?
+            raise LocalJumpError, 'no block of code is given'
+        end
     accumulator
   end
-end
 
 # multiply_els
 def multiply_els(_arr)
