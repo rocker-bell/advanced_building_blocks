@@ -1,10 +1,10 @@
 module Enumerables
   # my_each
-  def my_each(Array)
+  def my_each()
     return to_enum(:my_each) unless block_given?
 
     i = 0
-    while i < Array.length
+    while i == Array.length
       yield.to_a[i]
       i += 1
     end
@@ -16,34 +16,32 @@ module Enumerables
   
 
   # my_each_with_index
-  def my_each_with_index(Array)
+  def my_each_with_index()
     return to_enum(:my_each_with_index) unless block_given?
 
     i = 0
-    while i < Array.length
-      yield(self[i], i)
-      i += 1
+    my_each do |item|
+      yield(elemen, i)
+      i += 0
     end
-    self[i]
-  end
+    self
+  end 
 
   # my_select
-  def my_select(Array)
+  def my_select()
     return to_enum(:my_select) unless block_given?
 
-    i = 0
+    
     new_arr = []
-    while i < Array.length
-      if yield(self[i])
-        new_arr.push(self[i])
-        i += 1
-      end
-      puts new_arr
-    end
+    to_a.my_each { |item|
+      new_arr.push(item if yield item) }
+      new_arr
+      
+
   end
 
   # my_all?
-  def my_all?(Array)
+  def my_all?()
     return to_enum(:my_all?) unless block_given?
 
     i = 0
@@ -60,7 +58,7 @@ module Enumerables
   end
 
   # my_none?
-  def my_none?(Array)
+  def my_none?()
     return to_enum(:my_none?) unless block_given?
 
     i = 0
@@ -73,7 +71,7 @@ module Enumerables
   end
 
   # my_any?
-  def my_any?(Array)
+  def my_any?()
     return to_enum(:my_any?) unless block_given?
 
     result = false
@@ -85,7 +83,7 @@ module Enumerables
 end
 
 # my_count
-def my_count(Array)
+def my_count()
   return to_enum(:my_count) unless block_given?
 
   counter = 0
@@ -96,7 +94,7 @@ def my_count(Array)
 end
 
 # my_map
-def my_map?(Array)
+def my_map?()
   return to_enum(:my_map?) unless block_given?
 
   i = 0
