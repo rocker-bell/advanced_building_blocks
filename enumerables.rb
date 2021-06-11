@@ -1,23 +1,26 @@
 module Enumerables
   # my_each
-  def my_each
+  def my_each(Array)
     return to_enum(:my_each) unless block_given?
 
     i = 0
-    while i < length
-      yield(self[i])
+    while i < Array.length
+      yield.to_a[i]
       i += 1
     end
 
     self
   end
 
+  
+  
+
   # my_each_with_index
-  def my_each_with_index
+  def my_each_with_index(Array)
     return to_enum(:my_each_with_index) unless block_given?
 
     i = 0
-    while i < length
+    while i < Array.length
       yield(self[i], i)
       i += 1
     end
@@ -25,12 +28,12 @@ module Enumerables
   end
 
   # my_select
-  def my_select
+  def my_select(Array)
     return to_enum(:my_select) unless block_given?
 
     i = 0
     new_arr = []
-    while i < length
+    while i < Array.length
       if yield(self[i])
         new_arr.push(self[i])
         i += 1
@@ -40,12 +43,12 @@ module Enumerables
   end
 
   # my_all?
-  def my_all?
+  def my_all?(Array)
     return to_enum(:my_all?) unless block_given?
 
     i = 0
     result = true
-    while i < length
+    while i < Array.length
       if yield(self[i])
         i += 1
         next
@@ -57,11 +60,11 @@ module Enumerables
   end
 
   # my_none?
-  def my_none?
+  def my_none?(Array)
     return to_enum(:my_none?) unless block_given?
 
     i = 0
-    while i < length
+    while i < Array.length
       return false if yield(self[i])
 
       i += 1
@@ -70,7 +73,7 @@ module Enumerables
   end
 
   # my_any?
-  def my_any?
+  def my_any?(Array)
     return to_enum(:my_any?) unless block_given?
 
     result = false
@@ -82,7 +85,7 @@ module Enumerables
 end
 
 # my_count
-def my_count
+def my_count(Array)
   return to_enum(:my_count) unless block_given?
 
   counter = 0
@@ -93,7 +96,7 @@ def my_count
 end
 
 # my_map
-def my_map?
+def my_map?(Array)
   return to_enum(:my_map?) unless block_given?
 
   i = 0
@@ -136,6 +139,6 @@ def my_inject(accumulator = 0, &block)
 end
 
 # multiply_els
-def multiply_els(_arr)
+def multiply_els(arr)
   arr.my_inject { |accumulator, item| accumulator * item }
 end
