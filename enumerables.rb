@@ -33,9 +33,10 @@ module Enumerables
 
     
     new_arr = []
-    to_a.my_each { |item|
-      new_arr.push(item if yield item) }
-      new_arr
+    to_a.my_each do |item|
+      if yield item
+        new_arr.push(item)
+        new_arr
       
 
   end
