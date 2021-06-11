@@ -1,3 +1,4 @@
+#rubocop:disable Lint/Syntax
 module Enumerables
   # my_each
   def my_each()
@@ -141,3 +142,4 @@ end
 def multiply_els(arr)
   arr.my_inject { |accumulator, item| accumulator * item }
 end
+#rubocop:enable Lint/Syntax
