@@ -1,49 +1,54 @@
 #rubocop:disable Lint/Syntax
 module Enumerables
   # my_each
-  def my_each()
-    return to_enum(:my_each) unless block_given?
-
-    i = 0
-    while i == Array.length
-      yield.to_a[i]
-      i += 1
-    end
-
-    self
+  def my_each
+    if block_given?
+      i = 0
+      until i == size
+        yield to_a[i]
+        i += 1
+      else
+        to_enum
+      end
+      return self
   end
 
   
   
 
   # my_each_with_index
-  def my_each_with_index()
-    return to_enum(:my_each_with_index) unless block_given?
-
+  def my_each_with_index
+    
+    if block_given?
     i = 0
     my_each do |item|
-      yield(elemen, i)
-      i += 0
+      yield(item, i)
+      i += 1
+    else
+      to_enum
     end
     self
   end 
 
   # my_select
-  def my_select()
-    return to_enum(:my_select) unless block_given?
-
+  def my_select
     
+
+    if block_given?
     new_arr = []
     to_a.my_each do |item|
       if yield item
         new_arr.push(item)
-        new_arr
+      else
+        to_enum
+      end
+      new_arr
       
 
   end
 
   # my_all?
-  def my_all?()
+  def my_all?
     return to_enum(:my_all?) unless block_given?
 
     i = 0
@@ -60,7 +65,7 @@ module Enumerables
   end
 
   # my_none?
-  def my_none?()
+  def my_none?
     return to_enum(:my_none?) unless block_given?
 
     i = 0
@@ -73,7 +78,7 @@ module Enumerables
   end
 
   # my_any?
-  def my_any?()
+  def my_any?
     return to_enum(:my_any?) unless block_given?
 
     result = false
@@ -85,7 +90,7 @@ module Enumerables
 end
 
 # my_count
-def my_count()
+def my_count
   return to_enum(:my_count) unless block_given?
 
   counter = 0
@@ -96,7 +101,7 @@ def my_count()
 end
 
 # my_map
-def my_map?()
+def my_map?
   return to_enum(:my_map?) unless block_given?
 
   i = 0
@@ -139,7 +144,7 @@ def my_inject(accumulator = 0, &block)
 end
 
 # multiply_els
-def multiply_els(arr)
+def multiply_els
   arr.my_inject { |accumulator, item| accumulator * item }
 end
 #rubocop:enable Lint/Syntax
