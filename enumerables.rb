@@ -4,13 +4,16 @@ module Enumerables
   def my_each
     if block_given?
       i = 0
-      until i == size
-        yield to_a[i]
+      while i < self.length
+        yield self[i]
         i += 1
-      else
-        to_enum
-      end
-      return self
+    else
+      to_enum
+    end
+  end
+
+  [1, 2, 3].my_each do |item|
+    puts "hello #{item}"
   end
 
   
@@ -32,7 +35,6 @@ module Enumerables
 
   # my_select
   def my_select
-    
 
     if block_given?
     new_arr = []
@@ -43,8 +45,6 @@ module Enumerables
         to_enum
       end
       new_arr
-      
-
   end
 
   # my_all?
