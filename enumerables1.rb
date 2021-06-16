@@ -58,20 +58,37 @@ module Enumerable
     if block.given? 
       my_each {|item| return result if yield(item)}
       return false
-    elsif *args.nil?
+    elsif args.nil?
         my_each(|item| return result if item)
-    elsif !*args.nil? && (*args.instance_of?(Class))
-        my_each {|item| return result if item.is_a?(*args)}
-    elsif !*args.nil? && (*args.instance_of?(Regexp))
-        my_each {|item| return result if *args.match(item)}
+    elsif !args.nil? && (args.instance_of?(Class))
+        my_each {|item| return result if item.is_a?(args)}
+    elsif !args.nil? && (*args.instance_of?(Regexp))
+        my_each {|item| return result if args.match(item)}
     else
-        my_each {|item| return result if *args == item }
+        my_each {|item| return result if args == item }
     end
     false
   end
 
-  def my_none?(*args= nil, )
+  def my_none?(*args= nil )
       
+  end
+
+  def count(*args)
+    to_a
+    if args
+      counted = self.my_select {|element| element == args}
+      counted.length
+    else
+      return self.length unless block_given?
+      counter = 0
+      my_each do |element|
+        counter += 1 if yield(element)
+      end
+      counter
+    end
+    
+    
   end
 
 
