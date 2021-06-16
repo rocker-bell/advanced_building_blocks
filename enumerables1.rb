@@ -91,6 +91,27 @@ module Enumerable
     
   end
 
+  def my_map(proc = nil)
+    to_a
+    return to_enum(:my_map) unless block_given? || !proc.nil?
+    new_arr = []
+    if proc.nil?
+      self.my_each do |item|
+        new_arr.push(yield(item))
+      end
+    else 
+      self.my_each do |item|
+        new_arr.push(proc.call(item))
+      end
+    end
+    new_arr
+  end
+
+end
+    
+    
+  
+
 
     
 end
