@@ -32,52 +32,58 @@ module Enumerable
       
   end
 
-  def my_all?(*args = nil)
+  def my_all?(argm = nil)
     to_a
     result = true
-    if block_given? && !*args
+    if block_given? && !*argm
         my_each {|item| return false if yield(item) == false}
         return result
-    elsif *args.nil?
+    elsif *argm.nil?
         my_each {|item| return false if item.nil? || item == false}
-    elsif *args.instance_of?(Class)
-        my_each {|item| return false unless item.is_a?(*args)}
+    elsif *argm.instance_of?(Class)
+        my_each {|item| return false unless item.is_a?(*argm)}
         return result
-    elsif *args.instance_of?(Regexp)
-        my_each {|item| return false unless *args.match(|item|)}
+    elsif *argm.instance_of?(Regexp)
+        my_each {|item| return false unless *argm.match(|item|)}
     else
-        my_each {|item| return false if |item| != *args}
+        my_each {|item| return false if |item| != *argm}
     end
     result
       
   end
 
-  def my_any?(*args = nil)
+  def my_any?(argm = nil)
     to_a
     result = true
     if block.given? 
       my_each {|item| return result if yield(item)}
       return false
-    elsif args.nil?
+    elsif argm.nil?
         my_each(|item| return result if item)
-    elsif !args.nil? && (args.instance_of?(Class))
-        my_each {|item| return result if item.is_a?(args)}
-    elsif !args.nil? && (*args.instance_of?(Regexp))
-        my_each {|item| return result if args.match(item)}
+    elsif !argm.nil? && (argm.instance_of?(Class))
+        my_each {|item| return result if item.is_a?(argm)}
+    elsif !argm.nil? && (*argm.instance_of?(Regexp))
+        my_each {|item| return result if argm.match(item)}
     else
-        my_each {|item| return result if args == item }
+        my_each {|item| return result if argm == item }
     end
     false
   end
 
-  def my_none?(*args= nil )
+  def my_none?
+    return to_enum(my_none?) unless block_given?
+    arr = self
+    arr.my_each do |item|
+      return false unless yield(item)
+      true
+    end
       
   end
 
-  def count(*args)
+  def count(argm)
     to_a
-    if args
-      counted = self.my_select {|element| element == args}
+    if argm
+      counted = self.my_select {|element| element == argm}
       counted.length
     else
       return self.length unless block_given?
@@ -105,9 +111,16 @@ module Enumerable
       end
     end
     new_arr
-  end
+  
 
+  end
 end
+
+def my_inject()
+  
+end
+
+
     
     
   

@@ -128,7 +128,7 @@ end
 
 # my_inject
 def my_inject(accumulator = 0, &block)
-  if block_given? && ((accumulator.is_a? String) == false)
+  if block_given? && !(accumulator.is_a? String))
     my_each do |item|
       accumulator = block.call(accumulator, item)
     end
