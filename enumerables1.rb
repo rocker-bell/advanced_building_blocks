@@ -132,8 +132,8 @@ def my_inject(accumulator = 0, &block)
 end
 
 
-def multiply_els
-  arr.my_inject {|accumulator, item| accumulator * item}
+def multiply_els(arr)
+  arr.my_inject(1) {|accumulator, item| accumulator * item}
   
 end
 
