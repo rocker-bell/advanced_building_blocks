@@ -125,8 +125,8 @@ def my_inject(accumulator = 0, &block)
     end
     accumulator
   end
-  if !block_given? raise LocalJumpError 
-    "No block of code given"
+  if !block_given? 
+    raise LocalJumpError "No block of code given"
   end
   
 end
