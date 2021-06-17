@@ -8,9 +8,7 @@ module Enumerable
     self
   end
 
-  [1, 2, 3, 4].my_each do |item|
-    puts item
-  end
+ 
 
   def my_each_with_index
     return to_enum(:my_each_with_index) unless block_given?
@@ -35,18 +33,18 @@ module Enumerable
   def my_all?(argm = nil)
     to_a
     result = true
-    if block_given? && !*argm
+    if block_given? && !argm
         my_each {|item| return false if yield(item) == false}
         return result
-    elsif *argm.nil?
+    elsif argm.nil?
         my_each {|item| return false if item.nil? || item == false}
-    elsif *argm.instance_of?(Class)
-        my_each {|item| return false unless item.is_a?(*argm)}
+    elsif argm.instance_of?(Class)
+        my_each {|item| return false unless item.is_a?(argm)}
         return result
-    elsif *argm.instance_of?(Regexp)
-        my_each {|item| return false unless *argm.match(|item|)}
+    elsif argm.instance_of?(Regexp)
+        my_each {|item| return false unless argm.match(item)}
     else
-        my_each {|item| return false if |item| != *argm}
+        my_each {|item| return false if  item != argm}
     end
     result
       
@@ -54,18 +52,18 @@ module Enumerable
 
   def my_any?(argm = nil)
     to_a
-    result = true
+  
     if block.given? 
-      my_each {|item| return result if yield(item)}
+      my_each {|item| return true if yield(item)}
       return false
     elsif argm.nil?
-        my_each(|item| return result if item)
+        my_each {|item| return true if item}
     elsif !argm.nil? && (argm.instance_of?(Class))
-        my_each {|item| return result if item.is_a?(argm)}
-    elsif !argm.nil? && (*argm.instance_of?(Regexp))
-        my_each {|item| return result if argm.match(item)}
+        my_each {|item| return true if item.is_a?(argm)}
+    elsif !argm.nil? && (argm.instance_of?(Regexp))
+        my_each {|item| return true if argm.match(item)}
     else
-        my_each {|item| return result if argm == item }
+        my_each {|item| return true if argm == item }
     end
     false
   end
@@ -116,7 +114,26 @@ module Enumerable
   end
 end
 
-def my_inject()
+def my_inject(accumulator = 0, &block)
+  if block_given? && !(accumulator.instance_of?(String))
+    self.my_each do |item|
+      accumulator = block.call(accumulator, item)
+    end
+  elsif block_given? && (accumulator.instance_of?(String))
+    self.my_each do |item|
+      accumulator = accumulator ? yield (accumulator, item) : item
+    end
+    accumulator
+  end
+  if !block_given? raise LocalJumpError 
+    "No block of code given"
+  end
+  
+end
+
+
+def multiply_els
+  arr.my_inject {|accumulator, item| accumulator * item}
   
 end
 
