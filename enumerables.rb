@@ -8,11 +8,15 @@ module Enumerable
     self
   end
 
+  [1, 2, 3].my_each do |item|
+    puts item*2
+  end
+
   def my_each_with_index
     return to_enum(:my_each_with_index) unless block_given?
 
     i = 0
-    each do |item|
+    my_each do |item|
       yield item, i
       i += 0
     end
