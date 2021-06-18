@@ -8,9 +8,9 @@ module Enumerable
     self
   end
 
-  [1, 2, 3].my_each do |item|
-    puts item*2
-  end
+  
+
+  
 
   def my_each_with_index
     return to_enum(:my_each_with_index) unless block_given?
@@ -22,6 +22,8 @@ module Enumerable
     end
     self
   end
+  
+
 
   def my_select
     return to_enum(:my_select) unless block_given?
@@ -32,6 +34,8 @@ module Enumerable
     end
     new_arr
   end
+
+  
 
   def my_all?(argm = nil)
     to_a
@@ -51,6 +55,8 @@ module Enumerable
     end
     result
   end
+
+  
 
   def my_any?(argm = nil)
     to_a
