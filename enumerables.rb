@@ -51,7 +51,7 @@ module Enumerable
   def my_any?(argm = nil)
     to_a
 
-    if block.given?
+    if block_given?
       my_each { |item| return true if yield(item) }
       return false
     elsif argm.nil?
@@ -77,7 +77,7 @@ module Enumerable
     end
   end
 
-  def count(argm)
+  def my_count(argm)
     to_a
     if argm
       counted = my_select { |element| element == argm }
@@ -112,7 +112,7 @@ module Enumerable
 end
 
 def my_inject(accumulator = 0, &block)
-  if block_given? && !accumulator.instance_of?(String)
+  if block_given? && !(accumulator.instance_of?(String))
     my_each do |item|
       accumulator = block.call(accumulator, item)
     end
@@ -128,6 +128,15 @@ end
 def multiply_els(arr)
   arr.my_inject(1) { |accumulator, item| accumulator * item }
 end
+
+my_array = [1, 2, 3, 4]
+
+my_array.my_all?(Numeric)
+my_array.my_any?
+my_array.my_none?
+my_array.my_count(4)
+
+multiply_els(my_array)
 
 # rubocop:enable Metrics/CyclomaticComplexity
 # rubocop:enable Metrics/PerceivedComplexity
