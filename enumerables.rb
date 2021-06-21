@@ -112,7 +112,7 @@ module Enumerable
 end
 
 def my_inject(accumulator = 0, &block)
-  if block_given? && !(accumulator.instance_of?(String))
+  if block_given? && !accumulator.instance_of?(String)
     my_each do |item|
       accumulator = block.call(accumulator, item)
     end
