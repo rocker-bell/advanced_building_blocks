@@ -20,7 +20,7 @@ To get a local copy of this project follow the steps below:
 
 ### Setup Local
 
-Use `git clone git@github.com:rocker-bell/Enumerables.git` to clone the branch directly to your machine
+Use `git clone https://github.com/rocker-bell/advanced_building_blocks` to clone the branch directly to your machine
 
 ### Running the program
 
